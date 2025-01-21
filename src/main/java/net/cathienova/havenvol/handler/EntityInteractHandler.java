@@ -19,8 +19,10 @@ public class EntityInteractHandler
     {
         if (event.getTarget() instanceof Villager villager)
         {
-            if (!HavenConfig.enableVillagerLeashed) return;
             Player player = event.getEntity();
+            if (player.level().isClientSide()) return;
+            if (!HavenConfig.enableVillagerLeashed) return;
+
             InteractionHand hand = event.getHand();
 
             if (player.getItemInHand(event.getHand()).is(Items.LEAD))
